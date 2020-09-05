@@ -3,6 +3,10 @@
 #### 介绍
 基于 vue2.5+ 的音乐播放器组件，支持拖动等操作，仅支持 PC 端，效果如下：
 
+![Image text](./demo.png)
+
+<video src="./1599328363485.mp4" controls="controls" width="500" height="300"></video>
+
 [视频](./1599328363485.mp4)
 
 #### 接口
