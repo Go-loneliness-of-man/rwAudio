@@ -1,37 +1,19 @@
 # rwAudio
 
 #### 介绍
-基于 vue2.5+ 的音乐播放器组件
+基于 vue2.5+ 的音乐播放器组件，支持拖动等操作，仅支持 PC 端，效果如下：
 
-#### 软件架构
-软件架构说明
+<video src="./1599328363485.mp4" controls="controls" width="500" height="300"></video>
 
+#### 接口
+开发时调用了第三方开源接口，套用了其响应的数据格式，仓库地址：https://github.com/JxiaoC/animeMusic
 
-#### 安装教程
+#### 注意
+1、服务端需支持 http range，否则会有拖动进度条无效的问题，即 response header 必须包含 Content-Length、Content-Range、Accept-Ranges、Content-Type 四个字段，如：
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+Accept-Ranges: bytes
+Content-Length: 2364787
+Content-Range: bytes 1474560-3839347/3839347
+Content-Type: audio/mpeg
 
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+2、有两个依赖路径不对，原因是我是在一个完整的项目中开发该组件的，现在单独摘出来便缺了一些文件，具体是 importScss.scss、base.vue 这俩，我把它俩放到根目录了，但引用路径我就不改了，大家根据自己的需要改改

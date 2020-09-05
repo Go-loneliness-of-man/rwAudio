@@ -1,0 +1,183 @@
+@import "@/assets/scss/importScss.scss";
+
+// 音乐播放器
+.rwAudio {
+  @include flex();
+  
+  position: absolute;
+  opacity: 0.7;
+  z-index: 1;
+  cursor: move;
+  border-radius: 2px;
+
+  // 头部
+  .rwAudioHeader {
+    @include wh(15%, 100%);
+
+    position: relative;
+
+    // logo 容器
+    .rwAudioLogo {
+      @include circle();
+
+      overflow: hidden;
+      cursor: pointer;
+      position: absolute;
+      border: solid rgba(0, 0, 0, 0.6) 2px;
+      top: 50%;
+      left: 50%;
+      animation-timing-function: linear; // 匀速
+      animation-iteration-count: infinite; // 循环播放
+      animation-name: rotateLogo; // 动画名
+
+      // logo 图片
+      img {
+        max-height: 100%;
+        position: relative;
+        left: -45%; // 展示最中间的部分
+        opacity: 0.9;
+      }
+    }
+
+    // 播放按钮
+    .rwAudioButton {
+      @include circle();
+
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      cursor: pointer;
+      border: solid rgba(0, 0, 0, 0.6) 2px;
+
+      svg {
+        @include square(100%);
+
+        path {
+          fill: rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
+
+    &:hover {
+      .rwAudioLogo {
+        z-index: -1;
+      }
+
+      .rwAudioButton {
+        z-index: 1;
+      }
+    }
+  }
+  
+  // 主体
+  .rwAudioBody {
+    @include wh(85%, 100%);
+    @include flex(flex-start, center, wrap);
+
+    // 歌名
+    .rwAudioTitle {
+      @include wh(30%, 60%);
+      @include flex(center, center);
+
+      div {
+        @include slh();
+
+        max-width: 100%;
+        color: #ddd;
+        font-size: 24px;
+        letter-spacing: 0.1em;
+        word-spacing: 1px;
+      }
+    }
+    
+    // 描述
+    .rwAudioDesc {
+      @include wh(70%, 57%);
+      @include flex(center, center);
+
+      overflow: hidden;
+      position: relative;
+      margin-top: 1%;
+
+      div {
+        max-width: 96%;
+        color: #ddd;
+        font-size: 13px;
+        line-height: 1.4em;
+        letter-spacing: 1px;
+        position: absolute;
+      }
+    }
+    
+    // 当前播放时间
+    .rwAudioCurrentTime {
+      @include wh(12%, 40%);
+      @include flex(center, center);
+
+      color: #ddd;
+      font-size: 20px;
+      line-height: 1.4em;
+      letter-spacing: 1px;
+    }
+    
+    // 进度条
+    .rwAudioProcess {
+      @include wh(75%, 40%);
+      @include flex(center, center);
+
+      // 轨道
+      .processTrack {
+        @include flex();
+        @include wh(94%, 20%);
+
+        background: #aaa;
+        cursor: pointer;
+
+        // 进度条
+        .processBar {
+          height: 100%;
+          background: #ddd;
+        }
+
+        // 小圆点
+        .circlePoint {
+          $wh: 18px;
+
+          @include circle();
+          @include square($wh);
+
+          position: relative;
+          left: -($wh / 2);
+          top: -($wh / 4);
+          background: #ddd;
+
+          &:hover {
+            box-shadow: 0px 0px 6px white;
+          }
+        }
+      }
+    }
+
+    // 总时长
+    .rwAudioTotalTime {
+      @include wh(13%, 40%);
+      @include flex(center, center);
+
+      color: #ddd;
+      font-size: 20px;
+      line-height: 1.4em;
+      letter-spacing: 1px;
+    }
+  }
+
+  // 旋转动画
+  @keyframes rotateLogo {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

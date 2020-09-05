@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+$topNavBarHeight: 8vh;
+
+$n: ( // normal，默认主题
+  bg: (1: #111, 2: #333, 3: #555, 4: #888, 5: #aaa, 6: #fafafa), // 背景色  
+  fz: (1: 13px, 2: 15px, 3: 17px, 4: 20px, 5: 24px, 6: 30px, 7: 40px),        // 字体大小
+  fc: (1: #555, 2: #999, 3: #fafafa),                                  // 字体颜色
+  bd: solid #c9c9c9 1.6px,                                                 // 常见边框
+  tst: all 0.6s,                                                             // 过渡
+);
+
+$b: ( // blue，蓝色主题
+  bg: (1: rgb(51, 104, 155), 2: rgb(61, 124, 184), 3: rgb(70, 139, 204), 4: rgb(90, 170, 245), 5: rgb(76, 168, 253), 6: rgb(130, 187, 240)),  // 背景色
+  fz: (1: 13px, 2: 15px, 3: 17px, 4: 20px, 5: 24px, 6: 30px, 7: 40px),       // 字体大小
+  fc: (1: rgb(37, 83, 126), 2: rgb(136, 191, 241), 3: rgb(232, 243, 253)),       // 字体颜色
+  bd: solid rgb(70, 139, 204) 1px,                                        // 常见边框
+  tst: all 0.6s,
+);
+
+// 快捷获取主题变量值
+@function mg($k1, $k2: null, $map: $n) {
+  @if($k2) { // 有 key2 的情况
+    @return map-get(map-get($map, $k1), $k2);
+  }
+  @return map-get($map, $k1); // key2 为空的情况
+}
+
+
