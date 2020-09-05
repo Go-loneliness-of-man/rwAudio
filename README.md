@@ -3,7 +3,7 @@
 #### 介绍
 基于 vue2.5+ 的音乐播放器组件，支持拖动等操作，仅支持 PC 端，效果如下：
 
-<video src="./1599328363485.mp4" controls="controls" width="500" height="300"></video>
+[视频](./1599328363485.mp4)
 
 #### 接口
 开发时调用了第三方开源接口，套用了其响应的数据格式，仓库地址：https://github.com/JxiaoC/animeMusic
