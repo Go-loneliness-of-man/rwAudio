@@ -25,6 +25,13 @@
 
 <script>
 
+/*
+  下一步迭代：
+  1、忘了做音量控件，下次加上 。。。
+  2、做音量控件可以考虑将拖拽条单独抽成一个组件，便于复用
+*/
+
+
 import base from '../base/base.vue'; // 组件继承
 import { loading, play, pause } from './svg.js'; // svg 图标
 import processMethods from './process.js'; // 滑轨相关方法
@@ -45,7 +52,7 @@ const params = {
     logoRouteTime: '8s', // logo 旋转一次的时间
     author: '', // 歌曲作者
     position: { x: window.innerWidth - 670, y: 140 }, // 初始位置
-    volume: 0.5, // 初始音量
+    volume: 0.4, // 初始音量
   }),
 }
 
