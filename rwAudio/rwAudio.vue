@@ -5,7 +5,7 @@
       <div class="rwAudioLogo" :style="logoStyle"><img :src="logo"></div><!-- 旋转 logo -->
       <div class="rwAudioButton" :style="logoStyle" v-html="isPlay ? svg.pause : svg.play" @click="play"></div><!-- 播放、暂停按钮 -->
     </div>
-    <div class="rwAudioBody"><!-- 主体 -->
+    <div class="rwAudioBody" @mouseup="processup" @mousemove="processmove"><!-- 主体 -->
       <div class="rwAudioTitle"><div :title="title">{{ title }}</div></div><!-- 歌名 -->
       <div class="rwAudioDesc"><div :title="desc" ref="desc">{{ desc }}</div></div><!-- 描述 -->
       <div class="rwAudioCurrentTime"><div>{{ convertTimeText(currentTime) }}</div></div><!-- 当前时间 -->
@@ -26,9 +26,18 @@
 <script>
 
 /*
-  下一步迭代：
+  下 1 步迭代：
   1、忘了做音量控件，下次加上 。。。
   2、做音量控件可以考虑将拖拽条单独抽成一个组件，便于复用
+  3、拖拽条小圆点无法完全到达终点，应该是 flex 布局的原因，考虑改成 absolute
+
+  下 2 步迭代：
+  1、移动到屏幕边缘时可缩为半圆形附在屏幕边缘，鼠标悬停时展开
+
+  下 3 步迭代：
+  1、目前分段下载方面还没有头绪，只能一次把文件全传过来
+  2、加缓存条
+  3、音乐最后几秒播不出来，尚不清楚原因
 */
 
 
@@ -54,7 +63,7 @@ const params = {
     position: { x: window.innerWidth - 670, y: 140 }, // 初始位置
     volume: 0.4, // 初始音量
   }),
-}
+};
 
 /*
   方法：
@@ -149,9 +158,10 @@ export default {
 
     // 将 s 转为 00:00 的形式
     convertTimeText(num) {
+      if(num < 0) return '00:00';
       const m = parseInt(num / 60); // 分
       const s = num % 60; // 秒
-      const addZero = n => n > 10 ? n : `0${ n }`;
+      const addZero = n => n < 10 ? `0${ n }` : n;
       return `${ addZero(m) }:${ addZero(s) }`;
     },
 
