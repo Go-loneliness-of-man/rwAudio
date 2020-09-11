@@ -12,8 +12,8 @@ export default {
   
   // 进度条松开
   processup() {
+    if(!this.isCircleDown) return;
     this.au.currentTime = parseInt(this.currentTime); // 改变 currentTime
-    console.log(this.au.currentTime, parseInt(this.currentTime));
     this.isCircleDown = false; // 关闭小圆点拖拽
     this.listenProcess(); // 继续监听进度
   },
@@ -25,7 +25,6 @@ export default {
     const { width } = window.getComputedStyle(processTrack); // 获取滑轨 dom 宽度
     this.circleDx = e.screenX - this.circleStartX; // 计算偏移量
     this.currentTime = parseInt(this.tempTime + (this.circleDx / parseInt(width)) * this.totalTime); // 根据偏移量计算移动到的时间
-    console.log(this.currentTime, this.au.currentTime);
   },
 
   // 点击滑轨

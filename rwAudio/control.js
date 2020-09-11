@@ -30,7 +30,7 @@ export default {
     this.listenId.push(setInterval(() => {
       this.currentTime = parseInt(this.au.currentTime);
       this.totalTime = parseInt(this.au.duration);
-    }, 1000));
+    }, 500));
   },
 
   // 停止监听音乐播放进度

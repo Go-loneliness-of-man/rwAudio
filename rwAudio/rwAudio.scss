@@ -148,7 +148,7 @@
           @include square($wh);
 
           position: relative;
-          left: -($wh / 2);
+          left: -($wh / 4);
           top: -($wh / 4);
           background: #ddd;
 

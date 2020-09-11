@@ -33,11 +33,10 @@
 
   下 2 步迭代：
   1、移动到屏幕边缘时可缩为半圆形附在屏幕边缘，鼠标悬停时展开
+  2、检测到移动端时自动缩为半圆形附在边缘，点击展开。宽高方面想办法解决，用 px 会溢出
 
   下 3 步迭代：
-  1、目前分段下载方面还没有头绪，只能一次把文件全传过来
-  2、加缓存条
-  3、音乐最后几秒播不出来，尚不清楚原因
+  1、加缓存条
 */
 
 
@@ -58,9 +57,9 @@ const params = {
     descTime: '20s', // 描述滚动一次的时长
     logo: '', // 歌曲 logo url
     logoWH: '70px', // logo 边长
-    logoRouteTime: '8s', // logo 旋转一次的时间
+    logoRouteTime: '24s', // logo 旋转一次的时间
     author: '', // 歌曲作者
-    position: { x: window.innerWidth - 670, y: 140 }, // 初始位置
+    position: { x: 70, y: 40 }, // 初始位置
     volume: 0.4, // 初始音量
   }),
 };
@@ -135,7 +134,7 @@ export default {
         width: this.width,
         height: this.height,
         left: this.position.x + 'px',
-        top: this.position.y + 'px',
+        bottom: this.position.y + 'px',
         background: `linear-gradient(to bottom,rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url(${ this.bg }) no-repeat left/100%`,
       };
     },
@@ -182,7 +181,7 @@ export default {
       if(!this.isMouseDown) return;
       const dx = e.screenX - this.startPointerXY.x; // x、y 轴偏移量
       const dy = e.screenY - this.startPointerXY.y;
-      this.position = { x: this.startPosition.x + dx, y: this.startPosition.y + dy };
+      this.position = { x: this.startPosition.x + dx, y: this.startPosition.y - dy };
     },
 
     // 描述滚动
